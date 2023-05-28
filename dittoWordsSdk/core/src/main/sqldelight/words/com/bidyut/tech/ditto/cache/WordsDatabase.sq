@@ -1,0 +1,35 @@
+-- strings
+CREATE TABLE StringEntity (
+    key TEXT NOT NULL PRIMARY KEY,
+    stringValue TEXT NOT NULL
+);
+
+insertString:
+    INSERT OR REPLACE INTO StringEntity(key, stringValue)
+    VALUES(:key, :value);
+
+selectStrings:
+    SELECT * FROM StringEntity;
+
+selectStringsByKey:
+    SELECT * FROM StringEntity
+    WHERE key = :key;
+
+removeAllStrings:
+    DELETE FROM StringEntity;
+
+-- strings update time
+CREATE TABLE StringUpdateEntity (
+    projectId TEXT NOT NULL,
+    variantId TEXT NOT NULL,
+    updatedAt TEXT NOT NULL
+);
+CREATE UNIQUE INDEX idx_projectId_variantId ON StringUpdateEntity (projectId, variantId);
+
+insertStringUpdate:
+    INSERT OR REPLACE INTO StringUpdateEntity(projectId, variantId, updatedAt)
+    VALUES(:projectId, :variantId, :updatedAt);
+
+selectUpdatedAt:
+    SELECT MAX(updatedAt) AS 'maxUpdatedAt'
+    FROM StringUpdateEntity;

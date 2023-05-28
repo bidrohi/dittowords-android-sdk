@@ -1,0 +1,49 @@
+-- project
+CREATE TABLE ProjectEntity (
+    id TEXT NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    updatedAt TEXT NOT NULL
+);
+
+insertProject:
+    INSERT OR REPLACE INTO ProjectEntity(id, name, updatedAt)
+    VALUES(:id, :name, :updatedAt);
+
+selectProjectById:
+    SELECT * FROM ProjectEntity
+    WHERE id = :id;
+
+selectProjects:
+    SELECT * FROM ProjectEntity;
+
+removeAllProjects:
+    DELETE FROM ProjectEntity;
+
+selectProjectsUpdatedAt:
+    SELECT MAX(updatedAt) AS 'maxUpdatedAt'
+    FROM ProjectEntity;
+
+-- variant
+CREATE TABLE VariantEntity (
+    id TEXT NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    updatedAt TEXT NOT NULL
+);
+
+insertVariant:
+    INSERT OR REPLACE INTO VariantEntity(id, name, updatedAt)
+    VALUES(:id, :name, :updatedAt);
+
+selectVariantById:
+    SELECT * FROM VariantEntity
+    WHERE id = :id;
+
+selectVariants:
+    SELECT * FROM VariantEntity;
+
+removeAllVariants:
+    DELETE FROM VariantEntity;
+
+selectVariantsUpdatedAt:
+    SELECT MAX(updatedAt) AS 'maxUpdatedAt'
+    FROM VariantEntity;
