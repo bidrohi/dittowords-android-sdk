@@ -47,6 +47,19 @@ val dittoWords = DittoWords {
 }
 ```
 
+We can also get more specific instances like ones for the exact project:
+```kotlin
+val wonderProjectId: ProjectId = "<YOUR_PROJECT_ID>"
+val dittoWordsWonder = DittoWordsProject(dittoWords, wonderProjectId)
+```
+
+Or we can get even more specific instances like ones for the exact project and variant:
+```kotlin
+val wonderProjectId: ProjectId = "<YOUR_PROJECT_ID>"
+val bnVariantId: VariantId = "<YOUR_VARIANT_ID>"
+val dittoWordsWonderBN = DittoWordsProjectVariant(dittoWords, wonderProjectId, bnVariantId)
+```
+
 ## Fetching projects
 
 Fetch all available projects in the account using
